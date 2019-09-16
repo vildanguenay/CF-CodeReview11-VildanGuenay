@@ -41,6 +41,7 @@ if ($_GET['id']) {
    <form action="actions/a_update.php" method="post">
        <table cellspacing= "0" cellpadding="0">
             <tr>
+            <!-- display initially defined data in php tags for better overview while updating -->
                <td><input type="hidden" name="id" value="<?php echo $data['medium_id']?>"/></td>
            </tr>
             <tr>

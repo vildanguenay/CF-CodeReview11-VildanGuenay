@@ -19,18 +19,21 @@ if ($_POST) {
    $authorQuery = "INSERT INTO author (first_name, last_name) VALUES ('$fauthor', '$lauthor')";
 //    send input to db
    $connect->query($authorQuery);
-//    connect to db and get id of last(!) insert
+//    connect to db and get id of last(!) insert bc of foreign key
    $authorId = $connect->insert_id;
    print_r('Author Result: '.$authorResult);
    print_r('Author Id: '.$authorId);
+
    $publisherQuery = "INSERT INTO publisher (name, city, size) VALUES ('$pname', '$paddress', '$psize')";
    $connect->query($publisherQuery);
    $publisherId = $connect->insert_id;
+
    $mediumQuery = "INSERT INTO medium (ISBN, title, fk_author_id, type, description, publish_date, fk_publisher_id, image) 
    VALUES ('$ISBN', '$title', '$authorId', '$type', '$descr', '$pdate', '$publisherId', '$image')";
-   print_r('Result: '.$connect->query($mediumQuery));
-   if ($connect->query($mediumQuery) == TRUE) {
-       header('Location: http://localhost/CF-CodeReview11-VildanGuenay/crud/index.php');
+   if ($connect->query($mediumQuery) === FALSE) {
+       print_r($connect->error_get_last());
     }
+    //    redirect to index via http-header
+    header('Location: http://localhost/CF-CodeReview11-VildanGuenay/crud/index.php');
 }
 ?>

@@ -6,7 +6,7 @@
    <style type= "text/css">
        fieldset {
            margin: auto;
-            margin-top: 100px;
+           margin-top: 100px;
            width: 50% ;
        }
 
